@@ -51,27 +51,27 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
 from sklearn.compose import ColumnTransformer
 
-# import math
+import math
 
-# def plot_all_histograms(df):
-#     num_cols = df.select_dtypes(include=[np.number]).columns
-#     n_cols = 3
-#     n_rows = math.ceil(len(num_cols) / n_cols)
+def plot_all_histograms(df):
+    num_cols = df.select_dtypes(include=[np.number]).columns
+    n_cols = 3
+    n_rows = math.ceil(len(num_cols) / n_cols)
 
-#     plt.figure(figsize = (5 * n_cols, 4 * n_rows))
+    plt.figure(figsize = (5 * n_cols, 4 * n_rows))
 
-#     for i,col in enumerate(num_cols,1):
-#         plt.subplot(n_rows,n_cols,i)
-#         sns.histplot(df[col],bins=30,kde = True)
-#         plt.title(f"{col}")
-#         plt.xlabel("")
-#         plt.ylabel("")
+    for i,col in enumerate(num_cols,1):
+        plt.subplot(n_rows,n_cols,i)
+        sns.histplot(df[col],bins=30,kde = True)
+        plt.title(f"{col}")
+        plt.xlabel("")
+        plt.ylabel("")
 
-#     plt.tight_layout()
-#     plt.show()
+    plt.tight_layout()
+    plt.show()
 
 
-# print(plot_all_histograms(df))
+plot_all_histograms(df)
 
 X = df.drop("price", axis = 1)
 y = df["price"]
@@ -116,8 +116,8 @@ X_cols = preprocessor.get_feature_names_out()
 X_train = pd.DataFrame(X_train_scaled, columns=X_cols)
 X_test = pd.DataFrame(X_test_scaled, columns=X_cols)
 
-#sns.pairplot(df)
-#plt.show()
+sns.pairplot(df)
+plt.show()
 
 from sklearn.linear_model import LinearRegression, RidgeCV, LassoCV
 from sklearn.tree import DecisionTreeRegressor
